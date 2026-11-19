@@ -8,13 +8,13 @@
 <style>
 :root{
   /* Paleta: verde cemento y rosa palo */
-  --bg-dark:rgba(214,221,208,.92);--bg-light:rgba(232,236,226,.92);
+  --bg-dark:rgba(214,221,208,.55);--bg-light:rgba(236,239,230,.5);
   --rosa:#C98A91;--rosa-glow:rgba(201,138,145,.55);--cemento:#5E7364;
   --text:#34443A;--muted:#6E7E73;--ease:cubic-bezier(.25,1,.5,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body,html{width:100%;font-family:'Montserrat',sans-serif;color:var(--text);overflow-x:hidden;scroll-behavior:smooth;
-  background:#CBD3C5 radial-gradient(ellipse at 50% 0%,#E6EBDF 0%,#D2DACB 45%,#C5CEBE 100%) fixed}
+  background:url('assets/fondo.jpg') center/cover fixed,radial-gradient(ellipse at 50% 0%,#E6EBDF 0%,#D2DACB 45%,#C5CEBE 100%) fixed,#CBD3C5}
 
 /* Destellos */
 .firefly-container{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
@@ -29,7 +29,7 @@ body.content-active .sticky-music-btn{opacity:1;visibility:visible;transform:non
 .sticky-music-btn svg{width:18px;height:18px;fill:#fff}
 
 /* Sobre */
-#envelope-screen{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#EEF1E9,#C5CEBE);z-index:1000;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 1.2s ease-in-out,visibility 1.2s}
+#envelope-screen{position:fixed;inset:0;background:linear-gradient(rgba(214,221,208,.35),rgba(214,221,208,.35)),url('assets/fondo.jpg') center/cover,radial-gradient(ellipse at 50% 30%,#EEF1E9,#C5CEBE);z-index:1000;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 1.2s ease-in-out,visibility 1.2s}
 #envelope-screen.fade-out{opacity:0;visibility:hidden;pointer-events:none}
 .envelope-text-container{text-align:center;margin-bottom:50px;animation:floatText 4s ease-in-out infinite;position:relative;z-index:10}
 .env-tag{font-family:'Cinzel',serif;font-size:14px;letter-spacing:8px;text-transform:uppercase;color:var(--cemento);font-weight:500;text-shadow:0 0 15px rgba(94,115,100,.6)}
@@ -62,7 +62,7 @@ body.content-active #main-invitation{display:flex}
 @keyframes softGlow{from{text-shadow:0 0 10px rgba(201,138,145,.3)}to{text-shadow:0 0 25px rgba(201,138,145,.9)}}
 .delay-1{transition-delay:.1s}.delay-2{transition-delay:.3s}.delay-3{transition-delay:.5s}.delay-4{transition-delay:.7s}
 
-.section-block{width:100%;padding:110px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,138,145,.12)}
+.section-block{width:100%;padding:110px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border-bottom:1px solid rgba(201,138,145,.12)}
 .bg-1{background:var(--bg-dark)}.bg-2{background:var(--bg-light)}
 .tag-line{font-family:'Cinzel',serif;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:var(--cemento);margin-bottom:25px;font-weight:500}
 .title-script{font-family:'Pinyon Script',cursive;font-size:85px;color:var(--rosa);margin-bottom:20px;line-height:1.1;font-weight:400}
