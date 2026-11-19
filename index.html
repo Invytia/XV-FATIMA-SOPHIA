@@ -13,8 +13,10 @@
   --text:#34443A;--muted:#6E7E73;--ease:cubic-bezier(.25,1,.5,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body,html{width:100%;font-family:'Montserrat',sans-serif;color:var(--text);overflow-x:hidden;scroll-behavior:smooth;
-  background:url('assets/fondo.jpg') center/cover fixed,radial-gradient(ellipse at 50% 0%,#E6EBDF 0%,#D2DACB 45%,#C5CEBE 100%) fixed,#CBD3C5}
+body,html{width:100%;font-family:'Montserrat',sans-serif;color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
+html{background:radial-gradient(ellipse at 50% 0%,#E6EBDF 0%,#D2DACB 45%,#C5CEBE 100%) fixed,#CBD3C5}
+/* Capa fija: la imagen conserva su proporción (cover) y no se mueve con el scroll */
+.bg-fixed{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none;transform:translateZ(0);background:url('assets/fondo.jpg') center top/cover no-repeat}
 
 /* Destellos */
 .firefly-container{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
@@ -61,6 +63,18 @@ body.content-active #main-invitation{display:flex}
 .anim-glow.in-view{animation:softGlow 3s infinite alternate}
 @keyframes softGlow{from{text-shadow:0 0 10px rgba(201,138,145,.3)}to{text-shadow:0 0 25px rgba(201,138,145,.9)}}
 .delay-1{transition-delay:.1s}.delay-2{transition-delay:.3s}.delay-3{transition-delay:.5s}.delay-4{transition-delay:.7s}
+
+/* Hero */
+.hero{position:relative;width:100%;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;overflow:hidden;background:linear-gradient(160deg,#8FA08F,#C98A91);padding:44px 20px 56px;border-bottom:1px solid rgba(201,138,145,.3)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;animation:heroZoom 2.6s var(--ease) both}
+@keyframes heroZoom{from{transform:scale(1.1)}to{transform:scale(1)}}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(40,55,46,.45) 0%,rgba(40,55,46,0) 22%,rgba(40,55,46,0) 45%,rgba(61,80,68,.55) 72%,rgba(61,80,68,.92) 100%)}
+.hero-top{font-family:'Cinzel',serif;font-size:14px;letter-spacing:8px;text-transform:uppercase;color:#fff;font-weight:500;text-shadow:0 2px 12px rgba(30,45,38,.6)}
+.hero-bottom{position:relative;z-index:2;width:100%}
+.hero-name-wrap{filter:drop-shadow(0 4px 18px rgba(30,45,38,.55))}
+.hero-name{font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(64px,19vw,130px);line-height:1.1;padding:0 .15em .14em;display:inline-block;background:linear-gradient(180deg,#fff 10%,#F6DADD 55%,#E3A7AF 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero-date{font-family:'Cinzel',serif;font-size:15px;letter-spacing:4px;color:#F6E9EA;margin-top:10px}
+.hero-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(255,255,255,.8),transparent);margin:26px auto 0}
 
 .section-block{width:100%;padding:110px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border-bottom:1px solid rgba(201,138,145,.12)}
 .bg-1{background:var(--bg-dark)}.bg-2{background:var(--bg-light)}
@@ -126,10 +140,11 @@ select.input-line option{background:#E6EBDF;color:var(--text)}
   .map-box{height:250px}.envelope{width:300px;height:195px}
   .envelope::before,.envelope::after{border-width:97px 150px}.front-flap{border-left-width:150px;border-right-width:150px;border-top-width:105px}
 }
-@media(prefers-reduced-motion:reduce){.firefly{animation:none}.anim-element{transition:none}}
+@media(prefers-reduced-motion:reduce){.firefly,.hero-img{animation:none}.anim-element{transition:none}}
 </style>
 </head>
 <body>
+<div class="bg-fixed"></div>
 
 <audio id="bg-music" src="assets/song.mp3" loop></audio>
 
@@ -155,13 +170,17 @@ select.input-line option{background:#E6EBDF;color:var(--text)}
 <main id="main-invitation">
   <div id="fireflies" class="firefly-container"></div>
 
-  <!-- Portada (1.jpg) -->
-  <section class="section-block bg-1">
-    <div class="anim-element anim-fade-up delay-1 tag-line">Mis XV Años</div>
-    <h1 class="anim-element anim-zoom anim-glow delay-2 title-script">Fátima Sophia</h1>
-    <div class="anim-element anim-fade-up delay-3 line-divider"></div>
-    <div class="anim-element anim-fade-up delay-4 photo-frame" style="margin-top:20px"><img src="assets/1.jpg" alt="Fátima Sophia" onerror="this.parentNode.style.display='none'"></div>
-  </section>
+  <!-- Hero (1.jpg) -->
+  <header class="hero">
+    <img class="hero-img" src="assets/1.jpg" alt="Fátima Sophia" onerror="this.style.display='none'">
+    <div class="hero-shade"></div>
+    <div class="anim-element anim-fade-up delay-1 hero-top">Mis XV Años</div>
+    <div class="hero-bottom">
+      <div class="hero-name-wrap"><h1 class="anim-element anim-zoom delay-2 hero-name">Fátima Sophia</h1></div>
+      <div class="anim-element anim-fade-up delay-3 hero-date">28 de noviembre de 2026</div>
+      <div class="anim-element anim-fade-up delay-4 hero-line"></div>
+    </div>
+  </header>
 
   <!-- Padres y padrinos -->
   <section class="section-block bg-2">
